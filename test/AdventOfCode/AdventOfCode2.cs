@@ -26,11 +26,17 @@ internal static class AdventOfCode2
         }
     }
     public static int Part1Result() => _games.PossibleGamesId().Sum(game => game.Id);
+    public static int Part2Result() => _games
+        .Select(game => game.Rounds)
+        .Select(rounds =>
+                rounds.Select(round => round.Red).Where(n => n != 0).Max()
+                * rounds.Select(round => round.Green).Where(n => n != 0).Max()
+                * rounds.Select(round => round.Blue).Where(n => n != 0).Max())
+            .Sum();
+
     private static IEnumerable<Game> PossibleGamesId(this List<Game> games) => games.Where(game => game.Rounds
        .All(round => round.Red <= redCubes && round.Green <= greenCubes && round.Blue <= blueCubes));
-       
-    
-    static List<Game> ParseGames(string input)
+    private static List<Game> ParseGames(string input)
     {
         List<Game> games = new List<Game>();
 
