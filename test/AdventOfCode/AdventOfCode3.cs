@@ -19,11 +19,11 @@ namespace test.AdventOfCode
         private static char[,] ParseData(string s)
         {
             string[] data = s.Split("\r\n");
-            char[,] ParsedData = new char[data[0].Length, data.Length];
+            char[,] ParsedData = new char[data.Length, data[0].Length];
             for(int i = 0; i < data.Length; i++)
             {
                 //rows
-                for (int j = 0; j < data[i].Length; j++)
+                for (int j = 0; j < data[0].Length; j++)
                 {
                     //coloms
                     ParsedData[i, j] = data[i][j];
